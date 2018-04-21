@@ -1,0 +1,40 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.2.3'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
+        classpath 'com.novoda:bintray-release:0.3.4'
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply from: 'bintray.gradle'
+apply plugin: 'com.novoda.bintray-release'
+
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile 'com.android.tools.build:gradle:1.2.3'
+}
+
+publish {
+    userOrg = 'zhangmin03'      //bintray注册的用户名
+    groupId = 'com.zhangmin'         //compile引用时的第1部分groupId
+    artifactId = 'thinR'     //compile引用时的第2部分项目名
+    publishVersion = '1.0.0'    //compile引用时的第3部分版本号
+    desc = 'This is a okhttp3 extend library'
+    website = 'https://github.com/tsy12321/MyOkHttp'
+}
